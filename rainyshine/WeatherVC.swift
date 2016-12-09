@@ -39,13 +39,20 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 7
+        return forecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath)
+        // Cast from weather cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as? WeatherCell {
+            let forecast = forecasts[indexPath.row]
+            cell.configureCell(forecast: forecast)
+            return cell
+        } else {
+            return WeatherCell()
+        }
         
-        return cell
+        
     }
     
     func updateWeatherCell() {
@@ -58,6 +65,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func downloadForecastData(completed: @escaping DownloadComplete) {
+        
         // Download forecast data for TableView
         Alamofire.request(FORECAST_URL).responseJSON { response in
             let result = response.result
@@ -68,6 +76,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         self.forecasts.append(forecast)
                         print(obj)
                     }
+                    
+                    // Remove today's forecast and reload the table
                     self.forecasts.remove(at: 0)
                     self.tableView.reloadData()
                 }
