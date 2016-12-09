@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		240ECCFD1DFA3D5E00E132F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240ECCFC1DFA3D5E00E132F7 /* AppDelegate.swift */; };
-		240ECCFF1DFA3D5E00E132F7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240ECCFE1DFA3D5E00E132F7 /* ViewController.swift */; };
 		240ECD021DFA3D5E00E132F7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 240ECD001DFA3D5E00E132F7 /* Main.storyboard */; };
 		240ECD051DFA3D5E00E132F7 /* rainyshine.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 240ECD031DFA3D5E00E132F7 /* rainyshine.xcdatamodeld */; };
 		240ECD071DFA3D5E00E132F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 240ECD061DFA3D5E00E132F7 /* Assets.xcassets */; };
@@ -22,7 +21,6 @@
 /* Begin PBXFileReference section */
 		240ECCF91DFA3D5E00E132F7 /* rainyshine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rainyshine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		240ECCFC1DFA3D5E00E132F7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		240ECCFE1DFA3D5E00E132F7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		240ECD011DFA3D5E00E132F7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		240ECD041DFA3D5E00E132F7 /* rainyshine.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rainyshine.xcdatamodel; sourceTree = "<group>"; };
 		240ECD061DFA3D5E00E132F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				240ECCFC1DFA3D5E00E132F7 /* AppDelegate.swift */,
-				240ECCFE1DFA3D5E00E132F7 /* ViewController.swift */,
 				240ECD001DFA3D5E00E132F7 /* Main.storyboard */,
 				240ECD061DFA3D5E00E132F7 /* Assets.xcassets */,
 				240ECD081DFA3D5E00E132F7 /* LaunchScreen.storyboard */,
@@ -225,7 +222,6 @@
 			files = (
 				24B507501DFA5EFE0048B79D /* Constants.swift in Sources */,
 				240ECD051DFA3D5E00E132F7 /* rainyshine.xcdatamodeld in Sources */,
-				240ECCFF1DFA3D5E00E132F7 /* ViewController.swift in Sources */,
 				240ECCFD1DFA3D5E00E132F7 /* AppDelegate.swift in Sources */,
 				24B507521DFA5FDC0048B79D /* CurrentWeather.swift in Sources */,
 				24B5074E1DFA492F0048B79D /* WeatherVC.swift in Sources */,

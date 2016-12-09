@@ -51,13 +51,32 @@ class CurrentWeather {
         return _date
     }
     
-    func downloadWeather(callback: DownloadComplete) {
+    // @escaping as the callback is invoked after downloadWeather returns
+    func downloadWeather(callback: @escaping DownloadComplete) {
         let currentWeatherURL = URL(string: CURRENT_WEATHER_URL)!
-        print(currentWeatherURL)
+
         Alamofire.request(currentWeatherURL).responseJSON { response in
             let result = response.result
-            print(result)
+
+            if let dict = result.value as? Dictionary<String, AnyObject> {
+                if let name = dict["name"] as? String {
+                    self._cityName = name.capitalized
+                }
+                
+                if let weather = dict["weather"] as? [Dictionary<String, AnyObject>] {
+                    if let main = weather[0]["main"] as? String {
+                        self._weatherType = main.capitalized
+                    }
+                }
+                
+                if let main = dict["main"] as? Dictionary<String, Double> {
+                    if let currentTemperature = main["temp"] as Double! {
+                        self._currentTemp = currentTemperature
+                    }
+                }
+            }
+            // put callback within request block
+            callback()
         }
-        callback()
     }
 }
