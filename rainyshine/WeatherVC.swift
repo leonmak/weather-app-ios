@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -18,13 +19,17 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     var currentWeather = CurrentWeather()
+    var forecast: Forecast!
+    var forecasts = [Forecast]()
     
     override func viewDidLoad() {
         tableView.delegate = self
         tableView.dataSource = self
         
         currentWeather.downloadWeather {
-            self.updateWeatherCell()
+            self.downloadForecastData {
+                self.updateWeatherCell()
+            }
         }
     }
     
@@ -34,7 +39,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -50,5 +55,24 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         currentWeatherTypeLbl.text = currentWeather.weatherType
         locationLbl.text = currentWeather.cityName
         currentWeatherImg.image = UIImage(named: currentWeather.weatherType)
+    }
+    
+    func downloadForecastData(completed: @escaping DownloadComplete) {
+        // Download forecast data for TableView
+        Alamofire.request(FORECAST_URL).responseJSON { response in
+            let result = response.result
+            if let dict = result.value as? Dictionary<String, AnyObject> {
+                if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
+                    for obj in list {
+                        let forecast = Forecast(weatherDict: obj)
+                        self.forecasts.append(forecast)
+                        print(obj)
+                    }
+                    self.forecasts.remove(at: 0)
+                    self.tableView.reloadData()
+                }
+            }
+            completed()
+        }
     }
 }
